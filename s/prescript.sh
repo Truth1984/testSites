@@ -25,10 +25,20 @@ if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun 
     sudo apt-get update
 fi
 
+if ! [ -d "$HOME/Documents" ]; then 
+    mkdir $HOME/Documents
+fi
+
+if ! [ -d "$HOME/.application" ]; then 
+    mkdir -p $HOME/.application/backup
+    mkdir -p $HOME/.application/empty
+    chmod 400 empty
+fi
+
 if ! [ -f "$HOME/.bash_mine" ]; then
     touch $HOME/.bash_mine
     mkdir -p $HOME/.npm_global
-    mkdir -p $HOME/.application/backup
+
     echo 'source $HOME/.bash_mine' >> $HOME/.bashrc
     echo 'if [ "$PWD" = "$HOME" ]; then cd Documents; fi;' >> $HOME/.bash_mine
     echo 'function cdd { cd $1 && ls -a; }' >> $HOME/.bash_mine
@@ -63,6 +73,21 @@ if ! [ -x "$(command -v python3)"  ]; then
     sudo yum install -y python3-pip libmysqlclient-dev
     sudo -H pip3 install --upgrade pip
 fi;
+
+if ! [ -x "$(command -v chronyd)" ]; then
+    sudo apt-get install -y systemd tzdata ntp
+    sudo yum install -y systemd tzdata ntp
+    sudo rm -rf /etc/localtime
+    sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    timedatectl set-timezone Asia/Shanghai
+	timedatectl set-ntp true
+    echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
+
+    sudo apt-get install -y chrony 
+    sudo yum install -y chrony
+    sudo chronyd -q
+    sudo systemctl restart chronyd
+fi
 
 if  ! [ -x "$(command -v docker)" ]; then 
     echo docker
