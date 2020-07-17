@@ -74,6 +74,10 @@ if ! [ -x "$(command -v python3)"  ]; then
     sudo -H pip3 install --upgrade pip
 fi;
 
+if ! [ $LANG = en_US.UTF-8 ]; then
+    localectl set-locale LANG=en_US.UTF-8
+fi;
+
 if ! [ -x "$(command -v chronyd)" ]; then
     sudo apt-get install -y systemd tzdata ntp
     sudo yum install -y systemd tzdata ntp
