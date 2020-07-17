@@ -1,7 +1,7 @@
 #!/bin/bash
 # wget -O - https://truth1984.github.io/testSites/s/tools.sh | bash
 
-common="git nload psmisc net-tools nethogs openssh-server openssh-clients cronie"
+common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server openssh-clients cronie iptables"
 
 if ! [ -x "$(command -v sudo)" ]; then
     apt-get update -y
