@@ -66,7 +66,12 @@ if ! [ -x "$(command -v n)" ]; then
     npm config set registry https://registry.npm.taobao.org/
     npm i -g n
     n latest
-    npm i -g n yarn nodemon npm typescript trash-cli
+    PATH="$PATH"
+    
+    npm i -g nodemon 
+    npm i -g typescript 
+    npm i -g trash-cli
+    npm i -g yarn 
     yarn config set registry https://registry.npm.taobao.org -g
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
 fi;
