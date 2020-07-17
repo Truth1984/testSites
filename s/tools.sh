@@ -1,7 +1,7 @@
 #!/bin/bash
 # wget -O - https://truth1984.github.io/testSites/s/tools.sh | bash
 
-common="nload psmisc net-tools nethogs openssh-server openssh-clients cronie"
+common="git nload psmisc net-tools nethogs openssh-server openssh-clients cronie"
 
 if ! [ -x "$(command -v sudo)" ]; then
     apt-get update -y
