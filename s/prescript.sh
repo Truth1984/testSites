@@ -56,8 +56,11 @@ fi;
 if ! [ -x "$(command -v n)" ]; then
     common="curl screen npm"
 
-    sudo apt-get install -y software-properties-common $common
-    sudo yum install -y epel-release $common
+    sudo apt-get install -y software-properties-common 
+    sudo yum install -y epel-release 
+
+    sudo apt-get install -y $common
+    sudo yum install -y $common
     
     npm config set prefix $HOME/.npm_global
     npm config set registry https://registry.npm.taobao.org/
