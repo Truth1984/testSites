@@ -42,7 +42,7 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     echo 'source $HOME/.bash_mine' >> $HOME/.bashrc
     echo 'if [ "$PWD" = "$HOME" ]; then cd Documents; fi;' >> $HOME/.bash_mine
     echo 'function cdd { _back=$(pwd) && cd $1 && ls -a; }' >> $HOME/.bash_mine
-    echo 'function cdb { cd $_back; }' >> $HOME/.bash_mine
+    echo 'function cdb { cd $_back && ls -a; }' >> $HOME/.bash_mine
     echo 'PATH=$HOME/.npm_global/bin/:$PATH' >> $HOME/.bash_mine
     source $HOME/.bashrc
 fi
