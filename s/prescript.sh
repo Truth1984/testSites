@@ -120,9 +120,10 @@ if  ! [ -x "$(command -v docker)" ]; then
     sudo apt-get update 
     sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-    echo docker compose
+    sudo usermod -aG docker "$USER" && sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+fi;
+
+if ! [ -x "$(command -v docker-compose)" ]; then
     curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
-
-    sudo usermod -aG docker "$USER" && sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 fi;
