@@ -1,7 +1,7 @@
 #!/bin/bash
 # wget -O - https://truth1984.github.io/testSites/s/tools.sh | bash
 
-common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server openssh-clients cronie iptables"
+common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server iptables"
 
 if ! [ -x "$(command -v sudo)" ]; then
     apt-get update -y
@@ -13,12 +13,12 @@ fi;
 
 if [ -x "$(command -v apt)" ]; then
     sudo apt-get install software-properties-common
-    sudo apt-get install -y $common
+    sudo apt-get install -y $common cron openssh-client
 fi;
 
 if [ -x "$(command -v yum)" ]; then
     sudo yum install -y epel-release
-    sudo yum install -y $common
+    sudo yum install -y $common cronie openssh-clients
 fi;
 
 if ! [ -x "$(command -v n)" ]; then
