@@ -129,6 +129,9 @@ if  ! [ -x "$(command -v docker)" ]; then
     sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
     sudo apt-get update 
     sudo apt-get install docker-ce docker-ce-cli containerd.io
+    
+    sudo systemctl start docker.service
+    sudo systemctl enable docker.service
 fi;
 
 if ! [ -x "$(command -v docker-compose)" ]; then
