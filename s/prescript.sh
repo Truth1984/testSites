@@ -6,6 +6,7 @@ if ! [ -x "$(command -v sudo)" ]; then
 
     apt-get install -y sudo
     yum install -y sudo 
+    sudo yum install -y redhat-lsb-core
 fi;
 
 if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun ; then
@@ -65,24 +66,22 @@ if ! [ -x "$(command -v n)" ]; then
     
     npm config set prefix $HOME/.npm_global
 
-    mkdir -p -p $HOME/.application/tmp
+    mkdir -p $HOME/.application/tmp
     cd $HOME/.application/tmp
-    npm i n
+    npm i n yarn
     sudo $HOME/.application/tmp/node_modules/n/bin/n latest
+    PATH="$PATH"   
+    
+    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set registry https://registry.npm.taobao.org -g
+    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set prefix $HOME/.npm_global
+    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+    $HOME/.application/tmp/node_modules/yarn/bin/yarn global add n yarn 
+    source $HOME/.bashrc 
     PATH="$PATH"
-    cd $HOME && sudo rm -rf $HOME/.application/tmp
+  
+    cd $HOME && sudo rm -rf $HOME/.application/tmp   
     
-    source $HOME/.bashrc
-    
-    npm i -g n
-    npm i -g nodemon 
-    npm i -g typescript 
-    npm i -g trash-cli
-    npm i -g yarn 
-    
-    yarn config set prefix $HOME/.npm_global
-    yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
-    
+    yarn global add nodemon typescript trash-cli
     source $HOME/.bashrc
 fi;
 
