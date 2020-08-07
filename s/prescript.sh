@@ -80,9 +80,7 @@ if ! [ -x "$(command -v n)" ]; then
     npm i -g trash-cli
     npm i -g yarn 
     
-    npm config set registry https://registry.npm.taobao.org/
     yarn config set prefix $HOME/.npm_global
-    yarn config set registry https://registry.npm.taobao.org -g
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
     
     source $HOME/.bashrc
