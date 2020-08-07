@@ -119,10 +119,12 @@ if  ! [ -x "$(command -v docker)" ]; then
         docker-latest \
         docker-latest-logrotate \
         docker-logrotate \
-        docker-engine && sudo yum install -y yum-utils && sudo yum-config-manager \
-        --add-repo \
-        https://download.docker.com/linux/centos/docker-ce.repo 
-    sudo yum install -y docker-ce docker-ce-cli containerd.io
+        docker-engine 
+	
+    sudo yum install -y yum-utils 
+    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
+    sudo yum install -y docker-ce docker-ce-cli 
 
     sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
     sudo apt-get update 
