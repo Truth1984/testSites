@@ -32,7 +32,7 @@ fi
 if ! [ -d "$HOME/.application" ]; then 
     mkdir -p $HOME/.application/backup
     mkdir -p $HOME/.application/empty
-    chmod 400 empty
+    sudo chmod 400 $HOME/.application/empty
 fi
 
 if ! [ -f "$HOME/.bash_mine" ]; then
@@ -63,18 +63,29 @@ if ! [ -x "$(command -v n)" ]; then
     sudo apt-get install -y $common
     sudo yum install -y $common
     
-    npm config set prefix $HOME/.npm_global
     npm config set registry https://registry.npm.taobao.org/
-    npm i -g n
-    n latest
+    npm config set prefix $HOME/.npm_global
+
+    mkdir -p -p $HOME/.application/tmp
+    cd $HOME/.application/tmp
+    npm i n
+    sudo $HOME/.application/tmp/node_modules/n/bin/n latest
     PATH="$PATH"
+    cd $HOME && sudo rm -rf $HOME/.application/tmp
     
+    source $HOME/.bashrc
+    
+    npm i -g n
     npm i -g nodemon 
     npm i -g typescript 
     npm i -g trash-cli
     npm i -g yarn 
+    
+    yarn config set prefix $HOME/.npm_global
     yarn config set registry https://registry.npm.taobao.org -g
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+    
+    source $HOME/.bashrc
 fi;
 
 if ! [ -x "$(command -v python3)"  ]; then
@@ -119,8 +130,6 @@ if  ! [ -x "$(command -v docker)" ]; then
     sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
     sudo apt-get update 
     sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-    sudo usermod -aG docker "$USER" && sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
 fi;
 
 if ! [ -x "$(command -v docker-compose)" ]; then
