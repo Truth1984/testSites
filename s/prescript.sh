@@ -63,7 +63,6 @@ if ! [ -x "$(command -v n)" ]; then
     sudo apt-get install -y $common
     sudo yum install -y $common
     
-    npm config set registry https://registry.npm.taobao.org/
     npm config set prefix $HOME/.npm_global
 
     mkdir -p -p $HOME/.application/tmp
@@ -81,6 +80,7 @@ if ! [ -x "$(command -v n)" ]; then
     npm i -g trash-cli
     npm i -g yarn 
     
+    npm config set registry https://registry.npm.taobao.org/
     yarn config set prefix $HOME/.npm_global
     yarn config set registry https://registry.npm.taobao.org -g
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
@@ -115,7 +115,7 @@ fi
 
 if  ! [ -x "$(command -v docker)" ]; then 
     echo docker
-    yum remove docker \
+    sudo yum remove docker \
         docker-client \
         docker-client-latest \
         docker-common \
@@ -125,7 +125,7 @@ if  ! [ -x "$(command -v docker)" ]; then
         docker-engine && yum install -y yum-utils && yum-config-manager \
         --add-repo \
         https://download.docker.com/linux/centos/docker-ce.repo 
-    yum install -y docker-ce docker-ce-cli containerd.io
+    sudo yum install -y docker-ce docker-ce-cli containerd.io
 
     sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
     sudo apt-get update 
