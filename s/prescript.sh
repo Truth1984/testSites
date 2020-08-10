@@ -56,6 +56,12 @@ if ! [ -f "$HOME/.bash_env" ]; then
 
     _ip=$(wget -qO- http://ipecho.net/plain | xargs echo)
     echo "_ip=$_ip" >> $HOME/.bash_env
+
+    if type Xorg 2>&1 | grep -q not; then
+        echo "_gui=false" >> $HOME/.bash_env
+    else 
+        echo "_gui=true" >> $HOME/.bash_env
+    fi
     
     source $HOME/.bashrc
 fi;
@@ -124,6 +130,15 @@ fi
 
 if  ! [ -x "$(command -v docker)" ]; then 
     echo docker
+
+    if [ -x "$(command -v firewall-cmd)" ]; then
+        sudo firewall-cmd --zone=public --add-masquerade --permanent
+        sudo firewall-cmd --zone=public --add-port=80/tcp
+        sudo firewall-cmd --zone=public --add-port=443/tcp
+        
+        sudo firewall-cmd --reload
+    fi
+
     sudo yum remove docker \
         docker-client \
         docker-client-latest \

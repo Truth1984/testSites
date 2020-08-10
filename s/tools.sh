@@ -54,6 +54,7 @@ fi;
 if ! [ -d "$HOME/Documents/ucmd" ]; then 
     git clone https://github.com/Truth1984/ucmd.git $HOME/Documents/ucmd
     cd $HOME/Documents/ucmd
-    yarn global add $PWD
+    # yarn global add $PWD
+    npm i -g .
     u quick pip3 "sudo python3 -m pip install ... -i https://mirrors.aliyun.com/pypi/simple/"
 fi
