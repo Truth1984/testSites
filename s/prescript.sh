@@ -48,6 +48,18 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     source $HOME/.bashrc
 fi
 
+if ! [ -f "$HOME/.bash_env" ]; then
+    touch $HOME/.bash_env
+    if ! cat $HOME/.bashrc | grep -q bash_env; then 
+        echo 'source $HOME/.bash_env' >> $HOME/.bashrc
+    fi;
+
+    _ip=$(wget -qO- http://ipecho.net/plain | xargs echo)
+    echo "_ip=$_ip" >> $HOME/.bash_env
+    
+    source $HOME/.bashrc
+fi;
+
 if ! [ -x "$(command -v git)" ]; then
     sudo apt-get install -y git
     sudo yum install -y git
