@@ -90,17 +90,19 @@ if ! [ -x "$(command -v n)" ]; then
     
     npm config set prefix $HOME/.npm_global
 
-    npm i -g n
-    sudo n latest
-    PATH="$PATH" 
+    mkdir -p $HOME/.application/tmp
+    cd $HOME/.application/tmp
+    npm i n
+    sudo $HOME/.application/tmp/node_modules/n/bin/n latest
+    PATH="$PATH"   
+    cd $HOME && sudo rm -rf $HOME/.application/tmp   
 
-    npm i -g n yarn
-    npm i -g nodemon typescript trash-cli eslint
-    
+    npm i -g yarn n
     yarn config set registry https://registry.npm.taobao.org -g
     yarn config set prefix $HOME/.npm_global
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
-    
+
+    npm i -g nodemon typescript trash-cli eslint
     source $HOME/.bashrc
 fi;
 
