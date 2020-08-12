@@ -73,6 +73,12 @@ if ! [ -x "$(command -v git)" ]; then
     git config --global alias.adog "log --all --decorate --oneline --graph"
 fi;
 
+if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
+    sudo sh -c 'echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf'
+    sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6" >> /etc/sysctl.conf'
+    sudo sysctl -p
+fi;
+
 if ! [ -x "$(command -v n)" ]; then
     common="curl screen npm"
 
@@ -84,22 +90,17 @@ if ! [ -x "$(command -v n)" ]; then
     
     npm config set prefix $HOME/.npm_global
 
-    mkdir -p $HOME/.application/tmp
-    cd $HOME/.application/tmp
-    npm i n yarn
-    sudo $HOME/.application/tmp/node_modules/n/bin/n latest
-    PATH="$PATH"   
+    npm i -g n
+    sudo n latest
+    PATH="$PATH" 
+
+    npm i -g n yarn
+    npm i -g nodemon typescript trash-cli eslint
     
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set registry https://registry.npm.taobao.org -g
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set prefix $HOME/.npm_global
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn global add n yarn 
-    source $HOME/.bashrc 
-    PATH="$PATH"
-  
-    cd $HOME && sudo rm -rf $HOME/.application/tmp   
+    yarn config set registry https://registry.npm.taobao.org -g
+    yarn config set prefix $HOME/.npm_global
+    yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
     
-    yarn global add nodemon typescript trash-cli
     source $HOME/.bashrc
 fi;
 
