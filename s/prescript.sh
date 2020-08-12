@@ -55,12 +55,12 @@ if ! [ -f "$HOME/.bash_env" ]; then
     fi;
 
     _ip=$(wget -qO- http://ipecho.net/plain | xargs echo)
-    echo "_ip=$_ip" >> $HOME/.bash_env
+    echo "export _ip=$_ip" >> $HOME/.bash_env
 
     if type Xorg 2>&1 | grep -q not; then
-        echo "_gui=false" >> $HOME/.bash_env
+        echo "export _gui=false" >> $HOME/.bash_env
     else 
-        echo "_gui=true" >> $HOME/.bash_env
+        echo "export _gui=true" >> $HOME/.bash_env
     fi
     
     source $HOME/.bashrc
