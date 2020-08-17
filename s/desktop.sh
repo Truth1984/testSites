@@ -29,7 +29,8 @@ if $_gui; then
         sudo snap install vlc
     fi;
 
-    if ! [ sudo docker image ls | grep -q wine-stable ]; then
+    if ! sudo docker image ls | grep -q wine-stable ; then
         sudo docker pull thawsystems/wine-stable
+        u quick wine "sudo docker run -it wine-stable wine"
     fi;
 fi;
