@@ -165,10 +165,12 @@ if  ! [ -x "$(command -v docker)" ]; then
     if [ -f /etc/redhat-release ]; then
         sudo yum remove docker docker-common docker-selinux docker-engine
         sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-        wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+        sudo wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
         sudo sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
-        sudo yum makecache fast
-        sudo yum install docker-ce
+
+        sudo dnf install -y https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
+
+        sudo yum install -y docker-ce 
     fi;
 
     

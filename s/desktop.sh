@@ -2,12 +2,12 @@
 if $_gui; then
     if [ -f /etc/redhat-release ]; then
         sudo yum update -y
-        sudo yum install -y ntfs-3g snapd samba ibus-libpinyin.x86_64 
+        sudo yum install -y ntfs-3g snapd samba ibus-libpinyin.x86_64 open-vm-tools-desktop
     fi;
 
     if [ -f /etc/debian_version ]; then
         sudo apt update -y
-        sudo apt-get install -y snapd samba install ibus-libpinyin
+        sudo apt-get install -y snapd samba install ibus-libpinyin open-vm-tools-desktop
     fi;
 
     if ! [ -d $HOME/.local/share/fonts ]; then
@@ -23,9 +23,13 @@ if $_gui; then
 
     if [ -x "$(command -v snap)" ]; then 
         # https://snapcraft.io/store
-        sudo snap install postman
         sudo snap install code --classic
+        sudo snap install postman
         sudo snap install mysql-workbench-community
         sudo snap install vlc
+    fi;
+
+    if ! [ sudo docker image ls | grep -q wine-stable ]; then
+        sudo docker pull thawsystems/wine-stable
     fi;
 fi;
