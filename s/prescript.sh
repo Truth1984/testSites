@@ -9,6 +9,16 @@ if ! [ -x "$(command -v sudo)" ]; then
     sudo yum install -y redhat-lsb-core
 fi;
 
+if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
+    sudo sh -c "echo -e 'nameserver\t8.8.8.8' >> /etc/resolv.conf" 
+    sudo sh -c "echo -e 'nameserver\t8.8.4.4' >> /etc/resolv.conf" 
+fi;
+
+if ! cat /etc/hosts | grep -q github ; then
+    sudo sh -c "echo -e '151.101.48.133\traw.githubusercontent.com' >> /etc/hosts" 
+    sudo sh -c "echo -e '140.82.114.4\tgist.github.com' >> /etc/hosts"
+fi;
+
 if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun ; then
     sudo apt-get install -y lsb-release
     sudo sh -c "echo \"
@@ -122,7 +132,7 @@ if ! [ -x "$(command -v chronyd)" ]; then
     sudo rm -rf /etc/localtime
     sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     timedatectl set-timezone Asia/Shanghai
-	timedatectl set-ntp true
+    timedatectl set-ntp true
     echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
 
     sudo apt-get install -y chrony 
@@ -152,7 +162,7 @@ if  ! [ -x "$(command -v docker)" ]; then
         sudo apt-get install docker-ce
     fi;
 
-	if [ -f /etc/redhat-release ]; then
+    if [ -f /etc/redhat-release ]; then
         sudo yum remove docker docker-common docker-selinux docker-engine
         sudo yum install -y yum-utils device-mapper-persistent-data lvm2
         wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
