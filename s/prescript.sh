@@ -142,23 +142,25 @@ if  ! [ -x "$(command -v docker)" ]; then
         sudo firewall-cmd --reload
     fi
 
-    sudo yum remove docker \
-        docker-client \
-        docker-client-latest \
-        docker-common \
-        docker-latest \
-        docker-latest-logrotate \
-        docker-logrotate \
-        docker-engine 
-	
-    sudo yum install -y yum-utils 
-    sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-    sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
-    sudo yum install -y docker-ce docker-ce-cli 
+    if [ -f /etc/debian_version ]; then
+        sudo apt-get remove docker docker-engine docker.io
+        sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        sudo add-apt-repository \
+            "deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+        sudo apt-get update
+        sudo apt-get install docker-ce
+    fi;
 
-    sudo add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable
-    sudo apt-get update 
-    sudo apt-get install docker-ce docker-ce-cli containerd.io
+	if [ -f /etc/redhat-release ]; then
+        sudo yum remove docker docker-common docker-selinux docker-engine
+        sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+        wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+        sudo sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
+        sudo yum makecache fast
+        sudo yum install docker-ce
+    fi;
+
     
     sudo systemctl start docker.service
     sudo systemctl enable docker.service
