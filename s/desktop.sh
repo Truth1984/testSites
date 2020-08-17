@@ -2,12 +2,12 @@
 if $_gui; then
     if [ -f /etc/redhat-release ]; then
         sudo yum update -y
-        sudo yum install -y ntfs-3g snapd samba
+        sudo yum install -y ntfs-3g snapd samba ibus-libpinyin.x86_64 
     fi;
 
     if [ -f /etc/debian_version ]; then
         sudo apt update -y
-        sudo apt-get install -y snapd samba
+        sudo apt-get install -y snapd samba install ibus-libpinyin
     fi;
 
     if [ -x "$(command -v snap)" ]; then 
