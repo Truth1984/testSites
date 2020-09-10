@@ -16,7 +16,7 @@ fi;
 
 if ! cat /etc/hosts | grep -q github ; then
     sudo sh -c "echo -e '151.101.48.133\traw.githubusercontent.com' >> /etc/hosts" 
-    sudo sh -c "echo -e '140.82.114.4\tgist.github.com' >> /etc/hosts"
+    sudo sh -c "echo -e '140.82.114.4\tgithub.com' >> /etc/hosts"
 fi;
 
 if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun ; then
@@ -98,6 +98,7 @@ if ! [ -x "$(command -v n)" ]; then
     sudo apt-get install -y $common
     sudo yum install -y $common
     
+    npm config set registry "http://registry.npmjs.org/"
     npm config set prefix $HOME/.npm_global
 
     mkdir -p $HOME/.application/tmp
@@ -152,34 +153,12 @@ if  ! [ -x "$(command -v docker)" ]; then
         sudo firewall-cmd --reload
     fi
 
-    if [ -f /etc/debian_version ]; then
-        sudo apt-get remove docker docker-engine docker.io
-        sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
-        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        sudo add-apt-repository \
-            "deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
-        sudo apt-get update
-        sudo apt-get install docker-ce
-    fi;
+    sudo wget -O - https://get.docker.com | bash
 
-    if [ -f /etc/redhat-release ]; then
-        sudo yum remove docker docker-common docker-selinux docker-engine
-        sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-        sudo wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
-        sudo sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
-
-        sudo dnf install -y https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.10-3.2.el7.x86_64.rpm
-
-        sudo yum install -y docker-ce 
-    fi;
-
-    
     sudo systemctl start docker.service
     sudo systemctl enable docker.service
 fi;
 
 if ! [ -x "$(command -v docker-compose)" ]; then
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    sudo pip3 install docker-compose
 fi;
