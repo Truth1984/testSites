@@ -56,7 +56,11 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     cd $HOME/Documents/ucmd
     # yarn global add $PWD
     npm run build
-    u link docker-compose
+    
+    if [ -x "$(command -v docker-compose)" ]; then
+        u link docker-compose
+    fi;
+    
     u quick pip3 "sudo python3 -m pip install ... -i https://mirrors.aliyun.com/pypi/simple/"
     
 fi
