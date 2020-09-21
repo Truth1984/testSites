@@ -117,10 +117,11 @@ if ! [ -x "$(command -v n)" ]; then
     source $HOME/.bashrc
 fi;
 
-if ! [ -x "$(command -v python3)"  ]; then
-    sudo apt-get install -y python3-pip libmysqlclient-dev
-    sudo yum install -y python3-pip libmysqlclient-dev
+if ! [ -x "$(command -v python3)" ] || ! [ -f $HOME/.config/pip/pip.conf ] ; then
+    sudo apt-get install -y python3-pip 
+    sudo yum install -y python3-pip 
     sudo -H pip3 install --upgrade pip
+    sudo python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 fi;
 
 if ! [ $LANG = en_US.UTF-8 ]; then
