@@ -62,5 +62,5 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     fi;
     
     u quick pip3 "sudo python3 -m pip install ... -i https://mirrors.aliyun.com/pypi/simple/"
-    
+    u quick noip6 "sudo sysctl -p"
 fi
