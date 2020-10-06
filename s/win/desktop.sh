@@ -1,9 +1,4 @@
 #!/bin/bash
-choco install -y GoogleChrome adobereader \
-git openssh 7zip python3 dotnetfx filezilla \
-teamviewer nodejs vscode libreoffice-fresh \
-postman cmder docker-cli docker-compose f.lux \
-360ts epicgameslauncher potplayer
 
 if ! [ -d "$HOME/Documents" ]; then 
     mkdir $HOME/Documents
@@ -12,7 +7,7 @@ fi
 if ! [ -d "$HOME/.application" ]; then 
     mkdir -p $HOME/.application/backup
     mkdir -p $HOME/.application/empty
-    sudo chmod 400 $HOME/.application/empty
+    chmod 400 $HOME/.application/empty
 fi
 
 if ! [ -f "$HOME/.bash_mine" ]; then
@@ -26,6 +21,8 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     echo 'PATH=$HOME/.npm_global/bin/:$PATH' >> $HOME/.bash_mine
     source $HOME/.bashrc
 fi
+
+choco install -y nodejs
 
 if ! [ -x "$(command -v yarn)" ]; then
     common="curl screen npm"
@@ -49,3 +46,9 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     # yarn global add $PWD
     npm run build
 fi;
+
+choco install -y GoogleChrome adobereader \
+openssh 7zip python3 dotnetfx filezilla \
+teamviewer vscode libreoffice-fresh \
+postman cmder docker-cli docker-compose f.lux \
+360ts epicgameslauncher potplayer
