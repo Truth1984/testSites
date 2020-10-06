@@ -29,6 +29,7 @@ if ! [ -x "$(command -v yarn)" ]; then
     
     npm config set prefix $HOME/.npm_global
     npm i -g yarn   
+    source $HOME/.bashrc 
     
     yarn config set registry https://registry.npm.taobao.org -g
     yarn config set prefix $HOME/.npm_global
