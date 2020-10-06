@@ -25,19 +25,15 @@ fi
 choco install -y nodejs
 
 if ! [ -x "$(command -v yarn)" ]; then
-    common="curl screen npm"
+    common="curl screen npm nodemon typescript trash-cli"
     
     npm config set prefix $HOME/.npm_global
-    npm i -g yarn   
-    source $HOME/.bashrc 
+    npm i -g yarn    
+    $HOME/.npm_global/yarn config set registry https://registry.npm.taobao.org -g
+    $HOME/.npm_global/yarn config set prefix $HOME/.npm_global
+    $HOME/.npm_global/yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g 
     
-    yarn config set registry https://registry.npm.taobao.org -g
-    yarn config set prefix $HOME/.npm_global
-    yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g 
-    source $HOME/.bashrc 
-    PATH="$PATH"
-    
-    yarn global add nodemon typescript trash-cli
+    echo 'PATH="$HOME/.npm_global":$PATH' >> $HOME/.bashrc
     source $HOME/.bashrc
 fi;
 
