@@ -27,25 +27,17 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     source $HOME/.bashrc
 fi
 
-if ! [ -x "$(command -v n)" ]; then
+if ! [ -x "$(command -v yarn)" ]; then
     common="curl screen npm"
     
     npm config set prefix $HOME/.npm_global
-
-    mkdir -p $HOME/.application/tmp
-    cd $HOME/.application/tmp
-    npm i n yarn
-    $HOME/.application/tmp/node_modules/n/bin/n latest
-    PATH="$PATH"   
+    npm i -g yarn   
     
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set registry https://registry.npm.taobao.org -g
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set prefix $HOME/.npm_global
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
-    $HOME/.application/tmp/node_modules/yarn/bin/yarn global add n yarn 
+    yarn config set registry https://registry.npm.taobao.org -g
+    yarn config set prefix $HOME/.npm_global
+    yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g 
     source $HOME/.bashrc 
     PATH="$PATH"
-  
-    cd $HOME && rm -rf $HOME/.application/tmp   
     
     yarn global add nodemon typescript trash-cli
     source $HOME/.bashrc
