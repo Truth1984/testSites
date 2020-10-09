@@ -44,8 +44,10 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     npm run build
 fi;
 
-choco install -y GoogleChrome adobereader \
-openssh 7zip python3 dotnetfx filezilla \
-teamviewer vscode libreoffice-fresh \
-postman cmder docker-cli docker-compose f.lux \
+choco install -y GoogleChrome vscode cmder f.lux
+
+choco install -y adobereader \
+openssh 7zip python3 filezilla \
+teamviewer libreoffice-fresh \
+postman docker-cli docker-compose \
 360ts epicgameslauncher potplayer
