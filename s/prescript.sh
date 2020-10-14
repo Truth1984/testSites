@@ -43,6 +43,7 @@ fi
 if ! [ -d "$HOME/.application" ]; then 
     mkdir -p $HOME/.application/backup
     mkdir -p $HOME/.application/empty
+    mkdir -p $HOME/.application/logs
     sudo chmod 400 $HOME/.application/empty
 fi
 
