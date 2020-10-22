@@ -23,7 +23,8 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     source $HOME/.bashrc
 fi
 
-choco install -y nodejs
+choco install -y f.lux GoogleChrome cmder vscode  
+choco install -y nodejs npm
 
 if ! [ -x "$(command -v yarn)" ]; then
     common="curl screen npm nodemon typescript trash-cli"
@@ -42,13 +43,11 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     git clone https://github.com/Truth1984/ucmd.git $HOME/Documents/ucmd
     cd $HOME/Documents/ucmd
     # yarn global add $PWD
-    npm run build
+    npm i -g .
 fi;
-
-choco install -y GoogleChrome vscode cmder f.lux
 
 choco install -y adobereader \
 openssh 7zip python3 filezilla \
-teamviewer libreoffice-fresh \
-postman docker-cli docker-compose \
-360ts epicgameslauncher potplayer
+teamviewer postman potplayer
+
+choco install -y docker-cli docker-compose libreoffice-fresh
