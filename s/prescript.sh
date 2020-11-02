@@ -102,6 +102,8 @@ if ! [ -x "$(command -v n)" ]; then
     npm config set registry "http://registry.npmjs.org/"
     npm config set prefix $HOME/.npm_global
 
+    mkdir -p $HOME/.npm_global/lib
+
     mkdir -p $HOME/.application/tmp
     cd $HOME/.application/tmp
     npm i n
