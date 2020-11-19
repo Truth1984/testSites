@@ -4,6 +4,8 @@ https://truth1984.github.io/testSites/
 
 ```bash
 wget -O - https://truth1984.github.io/testSites/s/prescript.sh | bash
+
+wget -O - https://truth1984.github.io/testSites/s/tools.sh | bash
 ```
 
 ### powershell
