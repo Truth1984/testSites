@@ -1,12 +1,23 @@
 #!/bin/bash
 # wget -O - https://truth1984.github.io/testSites/s/prescript.sh | bash
 if ! [ -x "$(command -v sudo)" ]; then
-    apt-get update -y
-    yum update -y
+    if [ -x $(command -v apt) ]; then 
+        apt-get update -y
+        apt-get install -y sudo
+    fi;
+    if [ -x $(command -v yum) ]; then 
+        yum update -y
+        yum install -y sudo 
+        sudo yum install -y redhat-lsb-core
+    fi;
+fi;
 
-    apt-get install -y sudo
-    yum install -y sudo 
-    sudo yum install -y redhat-lsb-core
+if [ -x $(command -v apt) ]; then 
+    alias install='sudo apt-get install -y'
+elif [ -x $(command -v yum) ]; then 
+    alias install='sudo yum install -y'    
+elif [ -x $(command -v dnf) ]; then
+    alias install='sudo dnf install -y'
 fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
@@ -20,7 +31,7 @@ if ! cat /etc/hosts | grep -q github ; then
 fi;
 
 if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun ; then
-    sudo apt-get install -y lsb-release
+    install lsb-release
     sudo sh -c "echo \"
     deb http://mirrors.aliyun.com/ubuntu/ $(lsb_release -c -s) main restricted universe multiverse
     deb http://mirrors.aliyun.com/ubuntu/ $(lsb_release -c -s)-security main restricted universe multiverse
@@ -78,9 +89,7 @@ if ! [ -f "$HOME/.bash_env" ]; then
 fi;
 
 if ! [ -x "$(command -v git)" ]; then
-    sudo apt-get install -y git
-    sudo yum install -y git
-
+    install git
     git config --global alias.adog "log --all --decorate --oneline --graph"
 fi;
 
@@ -91,13 +100,15 @@ if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
 fi;
 
 if ! [ -x "$(command -v n)" ]; then
-    common="curl screen npm"
+    if [ -x $(command -v apt) ]; then 
+        install software-properties-common 
+        
+    fi;
+    if [ -x $(command -v yum) ]; then 
+        install epel-release 
+    fi;  
 
-    sudo apt-get install -y software-properties-common 
-    sudo yum install -y epel-release 
-
-    sudo apt-get install -y $common
-    sudo yum install -y $common
+    install curl screen npm
     
     npm config set registry "http://registry.npmjs.org/"
     npm config set prefix $HOME/.npm_global
@@ -121,8 +132,7 @@ if ! [ -x "$(command -v n)" ]; then
 fi;
 
 if ! [ -x "$(command -v python3)" ] || ! [ -f $HOME/.config/pip/pip.conf ] ; then
-    sudo apt-get install -y python3-pip 
-    sudo yum install -y python3-pip 
+    install python3-pip 
     sudo -H pip3 install --upgrade pip
     sudo python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 fi;
@@ -132,21 +142,28 @@ if ! [ $LANG = en_US.UTF-8 ]; then
 fi;
 
 if ! [ -x "$(command -v chronyd)" ]; then
-    sudo apt-get install -y systemd tzdata ntp
-    sudo yum install -y systemd tzdata ntp
+    install systemd tzdata ntp
     sudo rm -rf /etc/localtime
     sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     timedatectl set-timezone Asia/Shanghai
     timedatectl set-ntp true
     echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
 
-    sudo apt-get install -y chrony 
-    sudo yum install -y chrony
+    install chrony 
     sudo chronyd -q
     sudo systemctl restart chronyd
 fi
 
-if  ! [ -x "$(command -v docker)" ]; then 
+if ! [ -x "$(command -v snap)" ]; then 
+    install snapd
+    sudo systemctl enable --now snapd.socket
+fi;
+
+if ! [ -d /snap ]; then
+    sudo ln -s /var/lib/snapd/snap /snap
+fi;
+
+if ! [ -x "$(command -v docker)" ]; then 
     echo docker
 
     if [ -x "$(command -v firewall-cmd)" ]; then
