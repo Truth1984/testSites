@@ -13,11 +13,11 @@ if ! [ -x "$(command -v sudo)" ]; then
 fi;
 
 if [ -x $(command -v apt) ]; then 
-    alias install='sudo apt-get install -y'
+    alias ist='sudo apt-get install -y'
 elif [ -x $(command -v yum) ]; then 
-    alias install='sudo yum install -y'    
+    alias ist='sudo yum install -y'    
 elif [ -x $(command -v dnf) ]; then
-    alias install='sudo dnf install -y'
+    alias ist='sudo dnf install -y'
 fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
@@ -31,7 +31,7 @@ if ! cat /etc/hosts | grep -q github ; then
 fi;
 
 if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun ; then
-    install lsb-release
+    ist lsb-release
     sudo sh -c "echo \"
     deb http://mirrors.aliyun.com/ubuntu/ $(lsb_release -c -s) main restricted universe multiverse
     deb http://mirrors.aliyun.com/ubuntu/ $(lsb_release -c -s)-security main restricted universe multiverse
@@ -89,7 +89,7 @@ if ! [ -f "$HOME/.bash_env" ]; then
 fi;
 
 if ! [ -x "$(command -v git)" ]; then
-    install git
+    ist git
     git config --global alias.adog "log --all --decorate --oneline --graph"
 fi;
 
@@ -101,14 +101,14 @@ fi;
 
 if ! [ -x "$(command -v n)" ]; then
     if [ -x $(command -v apt) ]; then 
-        install software-properties-common 
+        ist software-properties-common 
         
     fi;
     if [ -x $(command -v yum) ]; then 
-        install epel-release 
+        ist epel-release 
     fi;  
 
-    install curl screen npm
+    ist curl screen npm
     
     npm config set registry "http://registry.npmjs.org/"
     npm config set prefix $HOME/.npm_global
@@ -132,7 +132,7 @@ if ! [ -x "$(command -v n)" ]; then
 fi;
 
 if ! [ -x "$(command -v python3)" ] || ! [ -f $HOME/.config/pip/pip.conf ] ; then
-    install python3-pip 
+    ist python3-pip 
     sudo -H pip3 install --upgrade pip
     sudo python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 fi;
@@ -142,20 +142,20 @@ if ! [ $LANG = en_US.UTF-8 ]; then
 fi;
 
 if ! [ -x "$(command -v chronyd)" ]; then
-    install systemd tzdata ntp
+    ist systemd tzdata ntp
     sudo rm -rf /etc/localtime
     sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
     timedatectl set-timezone Asia/Shanghai
     timedatectl set-ntp true
     echo "TZ='Asia/Shanghai'; export TZ" >> ~/.profile
 
-    install chrony 
+    ist chrony 
     sudo chronyd -q
     sudo systemctl restart chronyd
 fi
 
 if ! [ -x "$(command -v snap)" ]; then 
-    install snapd
+    ist snapd
     sudo systemctl enable --now snapd.socket
 fi;
 
