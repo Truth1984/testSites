@@ -1,5 +1,5 @@
 #!/bin/bash
-# wget -O - https://truth1984.github.io/testSites/s/prescript.sh | bash
+# bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
 if ! [ -x "$(command -v sudo)" ]; then
     if [ -x "$(command -v apt)" ]; then 
         apt-get update -y
@@ -20,7 +20,7 @@ elif [ -x "$(command -v dnf)" ]; then
     alias ist='sudo dnf install -y'
 fi;
 
-if [ -x "$(command -v wget)" ]; then
+if ! [ -x "$(command -v wget)" ]; then
     ist wget
 fi;
 

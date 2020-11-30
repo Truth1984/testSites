@@ -3,9 +3,9 @@ https://truth1984.github.io/testSites/
 ### bash
 
 ```bash
-wget -O - https://truth1984.github.io/testSites/s/prescript.sh | bash
+bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
 
-wget -O - https://truth1984.github.io/testSites/s/tools.sh | bash
+bash <(curl -s https://truth1984.github.io/testSites/s/tools.sh)
 ```
 
 ### powershell
