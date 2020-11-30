@@ -1,23 +1,27 @@
 #!/bin/bash
 # wget -O - https://truth1984.github.io/testSites/s/prescript.sh | bash
 if ! [ -x "$(command -v sudo)" ]; then
-    if [ -x $(command -v apt) ]; then 
+    if [ -x "$(command -v apt)" ]; then 
         apt-get update -y
         apt-get install -y sudo
     fi;
-    if [ -x $(command -v yum) ]; then 
+    if [ -x "$(command -v yum)" ]; then 
         yum update -y
         yum install -y sudo 
         sudo yum install -y redhat-lsb-core
     fi;
 fi;
 
-if [ -x $(command -v apt) ]; then 
+if [ -x "$(command -v apt)" ]; then 
     alias ist='sudo apt-get install -y'
-elif [ -x $(command -v yum) ]; then 
+elif [ -x "$(command -v yum)" ]; then 
     alias ist='sudo yum install -y'    
-elif [ -x $(command -v dnf) ]; then
+elif [ -x "$(command -v dnf)" ]; then
     alias ist='sudo dnf install -y'
+fi;
+
+if [ -x "$(command -v wget)" ]; then
+    ist wget
 fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
@@ -100,11 +104,11 @@ if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
 fi;
 
 if ! [ -x "$(command -v n)" ]; then
-    if [ -x $(command -v apt) ]; then 
+    if [ -x "$(command -v apt)" ]; then 
         ist software-properties-common 
         
     fi;
-    if [ -x $(command -v yum) ]; then 
+    if [ -x "$(command -v yum)" ]; then 
         ist epel-release 
     fi;  
 
