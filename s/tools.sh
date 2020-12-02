@@ -18,6 +18,8 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     cd $HOME/Documents/ucmd
     # yarn global add $PWD
     npm run build
+
+    source $HOME/.bashrc
     
     if [ -x "$(command -v docker-compose)" ]; then
         u link docker-compose
