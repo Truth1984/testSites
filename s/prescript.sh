@@ -12,6 +12,8 @@ if ! [ -x "$(command -v sudo)" ]; then
     fi;
 fi;
 
+shopt -s expand_aliases
+
 if [ -x "$(command -v apt)" ]; then 
     alias ist='sudo apt-get install -y'
 elif [ -x "$(command -v yum)" ]; then 
