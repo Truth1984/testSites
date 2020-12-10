@@ -1,5 +1,5 @@
 #!/bin/bash
-# wget -O - https://truth1984.github.io/testSites/s/tools.sh | bash
+# bash <(curl -s https://truth1984.github.io/testSites/s/tools.sh)
 
 common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server iptables"
 

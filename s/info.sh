@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# bash <(curl -s https://truth1984.github.io/testSites/s/info.sh)
 echo -e "\n\n========================================= HOST INFO ==========================================\n" 
 echo -e "\tHostname:\t"`hostname` 
  

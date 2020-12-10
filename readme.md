@@ -19,3 +19,9 @@ choco install -y git wget
 
 & 'C:\Program Files\Git\bin\bash.exe' -c 'wget -O - https://truth1984.github.io/testSites/s/win/desktop.sh | bash'
 ```
+
+### info
+
+```bash
+bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
+```
