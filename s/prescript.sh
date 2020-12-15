@@ -36,23 +36,6 @@ if ! cat /etc/hosts | grep -q github ; then
     sudo sh -c "echo -e '140.82.114.4\tgithub.com' >> /etc/hosts"
 fi;
 
-if [ -f /etc/apt/sources.list ] && ! cat /etc/apt/sources.list | grep -q aliyun ; then
-    ist lsb-release
-    sudo sh -c "echo \"
-    deb http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s) main restricted universe multiverse
-    deb http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-security main restricted universe multiverse
-    deb http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-updates main restricted universe multiverse
-    deb http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-proposed main restricted universe multiverse
-    deb http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-backports main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s) main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-security main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-updates main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-proposed main restricted universe multiverse
-    deb-src http://mirrors.aliyun.com/$(lsb_release -i -s | tr '[:upper:]' '[:lower:]')/ $(lsb_release -c -s)-backports main restricted universe multiverse\" > /etc/apt/sources.list"
-    
-    sudo apt-get update
-fi
-
 if ! [ -d "$HOME/Documents" ]; then 
     mkdir $HOME/Documents
 fi
