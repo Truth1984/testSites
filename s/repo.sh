@@ -3,7 +3,7 @@
 
 if grep -q "ID=ubuntu" /etc/os-release ; then 
     codename=$(env -i bash -c '. /etc/os-release; echo $VERSION_CODENAME')
-    echo -e "
+    sudo echo -e "
     deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ $codename main restricted universe multiverse
     deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ $codename main restricted universe multiverse
     deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ $codename-updates main restricted universe multiverse
@@ -17,7 +17,7 @@ fi;
 
 if grep -q "ID=debian" /etc/os-release ; then
     codename=$(dpkg --status tzdata|grep Provides|cut -f2 -d'-')
-    echo -e "
+    sudo echo -e "
     deb https://mirrors.tuna.tsinghua.edu.cn/debian/ $codename main contrib non-free
     deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ $codename main contrib non-free
     deb https://mirrors.tuna.tsinghua.edu.cn/debian/ $codename-updates main contrib non-free
