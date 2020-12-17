@@ -22,6 +22,10 @@ elif [ -x "$(command -v dnf)" ]; then
     alias ist='sudo dnf install -y'
 fi;
 
+if [ -d /etc/apt ] && ! grep -q tsinghua /etc/apt/sources.list ; then 
+    bash <(curl -s https://truth1984.github.io/testSites/s/repo.sh)
+fi;
+
 if ! [ -x "$(command -v wget)" ]; then
     ist wget
 fi;
