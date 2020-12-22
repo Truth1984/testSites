@@ -1,0 +1,13 @@
+version: "3.2"
+
+services:
+  INAME:
+    image: INAME
+    privileged: true
+    network_mode: host
+    environment:
+      - DOCKERIZED=true
+    restart: always
+    volumes:
+      - .:/app
+      - ~/.application/empty:/app/node_modules
