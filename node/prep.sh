@@ -21,6 +21,14 @@ if ! [ -f docker-compose.yml ]; then
     u replace docker-compose.yml INAME $imageName
 fi;
 
+if ! $(u pkgjson -h=start); then
+    u pkgjson start "node index.js"
+fi;
+
+if ! $(u pkgjson -h=rebuild); then
+    u pkgjson rebuild "sudo docker image build -t $imageName ."
+fi;
+
 if ! sudo docker image ls | grep -q $imageName; then
     sudo docker image build -t $imageName . 
 fi;
