@@ -105,6 +105,7 @@ if ! [ -x "$(command -v n)" ]; then
     
     npm config set registry "http://registry.npmjs.org/"
     npm config set prefix $HOME/.npm_global
+    echo "export NODE_PATH=$HOME/.npm_global/lib/node_modules" >> $HOME/.bash_mine
 
     mkdir -p $HOME/.npm_global/lib
 
