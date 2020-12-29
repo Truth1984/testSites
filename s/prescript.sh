@@ -121,7 +121,7 @@ if ! [ -x "$(command -v n)" ]; then
     yarn config set prefix $HOME/.npm_global
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
 
-    npm i -g nodemon typescript trash-cli eslint awadau
+    npm i -g nodemon typescript trash-cli eslint awadau backend-core
     source $HOME/.bashrc
 fi;
 
