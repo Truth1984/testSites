@@ -15,7 +15,6 @@ fi;
 shopt -s expand_aliases
 
 if [ -x "$(command -v apt)" ]; then 
-    sudo apt-get update
     alias ist='sudo apt-get install -y'
 elif [ -x "$(command -v yum)" ]; then 
     alias ist='sudo yum install -y'    
@@ -23,10 +22,9 @@ elif [ -x "$(command -v dnf)" ]; then
     alias ist='sudo dnf install -y'
 fi;
 
-command -v ist
-
 if [ -d /etc/apt ] && ! grep -q tsinghua /etc/apt/sources.list ; then 
     bash <(curl -s https://truth1984.github.io/testSites/s/repo.sh)
+    sudo apt-get update
 fi;
 
 if ! [ -x "$(command -v wget)" ]; then
