@@ -23,5 +23,5 @@ choco install -y git wget
 ### info
 
 ```bash
-bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
+bash <(curl -s https://truth1984.github.io/testSites/s/info.sh)
 ```

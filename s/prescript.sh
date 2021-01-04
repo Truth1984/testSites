@@ -116,9 +116,10 @@ if ! [ -x "$(command -v n)" ]; then
     sudo $HOME/.application/tmp/node_modules/n/bin/n latest
     PATH="$PATH"   
     cd $HOME && sudo rm -rf $HOME/.application/tmp   
-    source $HOME/.bashrc
     
+    source $HOME/.bashrc
     npm i -g yarn n
+    source $HOME/.bashrc
     yarn config set registry https://registry.npm.taobao.org -g
     yarn config set prefix $HOME/.npm_global
     yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
