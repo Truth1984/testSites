@@ -28,3 +28,7 @@ if ! [ -d "$HOME/Documents/ucmd" ]; then
     u quick pip3 "sudo python3 -m pip install ... -i https://mirrors.aliyun.com/pypi/simple/"
     u quick noip6 "sudo sysctl -p"
 fi
+
+if $_gui && npm list -g | grep -q typescript; then 
+    npm i -g eslint typescript jest eslint-plugin-jest @types/jest
+fi;
