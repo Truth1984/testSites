@@ -89,7 +89,7 @@ fi;
 
 if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
     sudo sh -c 'echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf'
-    sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6" >> /etc/sysctl.conf'
+    sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6=1" >> /etc/sysctl.conf'
     sudo sh -c "printf 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf"
     sudo sysctl -p
 fi;
