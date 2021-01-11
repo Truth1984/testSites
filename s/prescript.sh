@@ -32,13 +32,13 @@ if ! [ -x "$(command -v wget)" ]; then
 fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
-    sudo sh -c "echo -e 'nameserver\t8.8.8.8' >> /etc/resolv.conf" 
-    sudo sh -c "echo -e 'nameserver\t8.8.4.4' >> /etc/resolv.conf" 
+    sudo sh -c "printf 'nameserver\t8.8.8.8' >> /etc/resolv.conf" 
+    sudo sh -c "printf 'nameserver\t8.8.4.4' >> /etc/resolv.conf" 
 fi;
 
 if ! cat /etc/hosts | grep -q github ; then
-    sudo sh -c "echo -e '151.101.48.133\traw.githubusercontent.com' >> /etc/hosts" 
-    sudo sh -c "echo -e '140.82.114.4\tgithub.com' >> /etc/hosts"
+    sudo sh -c "printf '151.101.48.133\traw.githubusercontent.com' >> /etc/hosts" 
+    sudo sh -c "printf '140.82.114.4\tgithub.com' >> /etc/hosts"
 fi;
 
 if ! [ -d "$HOME/Documents" ]; then 
@@ -90,6 +90,7 @@ fi;
 if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
     sudo sh -c 'echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf'
     sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6" >> /etc/sysctl.conf'
+    sudo sh -c "printf 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf"
     sudo sysctl -p
 fi;
 

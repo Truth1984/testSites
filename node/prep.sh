@@ -12,7 +12,7 @@ fi;
 if ! [ -f $DIR/dockerfile ]; then
     echo downloading node.docker
     wget -O $DIR/dockerfile https://truth1984.github.io/testSites/node/node.docker
-    echo -e "node_modules\npackage-lock*.json"> $DIR/.dockerignore
+    printf "node_modules\npackage-lock*.json"> $DIR/.dockerignore
 fi;
 
 if ! [ -f docker-compose.yml ]; then
