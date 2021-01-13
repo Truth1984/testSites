@@ -7,7 +7,7 @@ read -p "http port?" port
 
 shortName=$(u regex "$urls" -B=www.,\$)
 
-if ! [ -x "$(command -v apt)" ]; then
+if [ -x "$(command -v apt)" ]; then
     if ! [ -x  "$(command -v certbot)" ] || ! [ -x  "$(command -v nginx)" ] ; then
         sudo add-apt-repository universe
         sudo add-apt-repository ppa:certbot/certbot
