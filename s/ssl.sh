@@ -12,7 +12,9 @@ if ! [ -x "$(command -v apt)" ]; then
         sudo add-apt-repository universe
         sudo add-apt-repository ppa:certbot/certbot
         sudo apt-get update
-        sudo apt-get install certbot python-certbot-nginx nginx
+        sudo apt-get install -y nginx
+        sudo apt-get install -y python3-certbot-nginx
+        sudo apt-get install -y certbot
         u service -e=nginx
     fi;
 else
