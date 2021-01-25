@@ -22,13 +22,17 @@ elif [ -x "$(command -v dnf)" ]; then
     alias ist='sudo dnf install -y'
 fi;
 
+if ! [ -x "$(command -v wget)" ]; then
+    ist wget
+fi;
+
+if ! [ -x "$(command -v curl)" ]; then
+    ist curl
+fi;
+
 if [ -d /etc/apt ] && ! grep -q tsinghua /etc/apt/sources.list ; then 
     bash <(curl -s https://truth1984.github.io/testSites/s/repo.sh)
     sudo apt-get update
-fi;
-
-if ! [ -x "$(command -v wget)" ]; then
-    ist wget
 fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then

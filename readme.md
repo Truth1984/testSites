@@ -3,9 +3,11 @@ https://truth1984.github.io/testSites/
 ### bash
 
 ```bash
-bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
+preurl="https://truth1984.github.io/testSites/s/prescript.sh"
+if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then wget -O - $preurl | bash; fi;
 
-bash <(curl -s https://truth1984.github.io/testSites/s/tools.sh)
+toolurl="https://truth1984.github.io/testSites/s/tools.sh"
+if [ -x "$(command -v curl)" ]; then bash bash <(curl -s $toolurl); elif [ -x "$(command -v wget)" ]; wget -O - $toolurl | bash; fi;
 ```
 
 ### powershell
