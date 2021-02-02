@@ -36,13 +36,17 @@ if [ -d /etc/apt ] && ! grep -q tsinghua /etc/apt/sources.list ; then
 fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
-    sudo sh -c "printf 'nameserver\t8.8.8.8' >> /etc/resolv.conf" 
-    sudo sh -c "printf 'nameserver\t8.8.4.4' >> /etc/resolv.conf" 
+    sudo sh -c "printf 'nameserver\t8.8.8.8\n' >> /etc/resolv.conf" 
+    sudo sh -c "printf 'nameserver\t8.8.4.4\n' >> /etc/resolv.conf" 
 fi;
 
 if ! cat /etc/hosts | grep -q github ; then
-    sudo sh -c "printf '151.101.48.133\traw.githubusercontent.com' >> /etc/hosts" 
-    sudo sh -c "printf '140.82.114.4\tgithub.com' >> /etc/hosts"
+    sudo sh -c "printf '151.101.48.133\traw.githubusercontent.com\n' >> /etc/hosts" 
+    sudo sh -c "printf '140.82.114.4\tgithub.com\n' >> /etc/hosts"
+fi;
+
+if ! cat /etc/sysctl.conf | grep -q vm.max_map_count ; then
+    sudo sh -c "echo 'vm.max_map_count=262144' >> /etc/sysctl.conf"
 fi;
 
 if ! [ -d "$HOME/Documents" ]; then 
@@ -94,7 +98,7 @@ fi;
 if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
     sudo sh -c 'echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf'
     sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6=1" >> /etc/sysctl.conf'
-    sudo sh -c "printf 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf"
+    sudo sh -c "echo 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf"
     sudo sysctl -p
 fi;
 
