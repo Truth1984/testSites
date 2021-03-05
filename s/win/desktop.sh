@@ -23,7 +23,7 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     source $HOME/.bashrc
 fi
 
-choco install -y f.lux GoogleChrome cmder vscode  
+choco install -y f.lux GoogleChrome cmder vscode ag
 choco install -y nodejs npm
 
 if ! [ -x "$(command -v yarn)" ]; then
