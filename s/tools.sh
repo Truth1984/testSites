@@ -33,6 +33,6 @@ if [ -x "$(command -v ansible)" ]; then
     u quick pip3 -a="ansible"
 fi;
 
-if $_gui && ! npm list -g | grep -q typescript; then 
+if $u_gui && ! npm list -g | grep -q typescript; then 
     npm i -g eslint typescript jest eslint-plugin-jest @types/jest
 fi;
