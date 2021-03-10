@@ -1,6 +1,6 @@
 #!/bin/bash
 # wget -O - https://truth1984.github.io/testSites/s/desktop.sh | bash
-if $_gui; then
+if $u_gui; then
     if [ -f /etc/redhat-release ]; then
         sudo yum update -y
         sudo yum install -y ntfs-3g snapd samba ibus-libpinyin.x86_64 open-vm-tools-desktop
