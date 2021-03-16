@@ -16,10 +16,13 @@ shopt -s expand_aliases
 
 if [ -x "$(command -v apt)" ]; then 
     alias ist='sudo apt-get install -y'
+    alias istu='sudo apt-get upgrade -y'
 elif [ -x "$(command -v yum)" ]; then 
     alias ist='sudo yum install -y'    
+    alias istu='sudo yum upgrade -y'
 elif [ -x "$(command -v dnf)" ]; then
     alias ist='sudo dnf install -y'
+    alias istu='sudo dnf upgrade -y'
 fi;
 
 if ! [ -x "$(command -v wget)" ]; then
@@ -190,5 +193,6 @@ if ! [ -x "$(command -v docker)" ]; then
 fi;
 
 if ! [ -x "$(command -v docker-compose)" ]; then
+    # istu python3
     sudo pip3 install docker-compose
 fi;
