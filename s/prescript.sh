@@ -89,9 +89,6 @@ if ! [ -f "$HOME/.bash_env" ]; then
     else 
         echo "export u_gui=true" >> $HOME/.bash_env
     fi
-
-    echo 'export u_name="appserver"' >> $HOME/.bash_env
-    echo 'export u_describe="application server"' >> $HOME/.bash_env
     
     source $HOME/.bashrc
 fi;
