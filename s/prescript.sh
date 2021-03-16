@@ -78,7 +78,7 @@ if ! [ -f "$HOME/.bash_env" ]; then
         echo 'source $HOME/.bash_env' >> $HOME/.bashrc
     fi;
 
-    u_ip=$(wget -qO- http://ipecho.net/plain | xargs echo)
+    u_ip=$(wget -qO- ident.me | xargs echo)
     echo "export u_ip=$u_ip" >> $HOME/.bash_env
 
     if type Xorg 2>&1 | grep -q not; then
