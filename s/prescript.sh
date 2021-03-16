@@ -132,9 +132,9 @@ if ! [ -x "$(command -v n)" ]; then
     source $HOME/.bashrc
     npm i -g yarn n
     source $HOME/.bashrc
-    yarn config set registry https://registry.npm.taobao.org -g
-    yarn config set prefix $HOME/.npm_global
-    yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
+    $HOME/.npm_global/bin/yarn config set registry https://registry.npm.taobao.org -g
+    $HOME/.npm_global/bin/yarn config set prefix $HOME/.npm_global
+    $HOME/.npm_global/bin/yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
 
     npm i -g nodemon trash-cli awadau backend-core
     source $HOME/.bashrc
