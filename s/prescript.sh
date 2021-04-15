@@ -72,8 +72,8 @@ if ! [ -f "$HOME/.bash_mine" ]; then
     echo 'function cdd { _back=$(pwd) && cd $1 && ls -a; }' >> $HOME/.bash_mine
     echo 'function cdb { _oldback=$_back && _back=$(pwd) && cd $_oldback && ls -a; }' >> $HOME/.bash_mine
     echo 'PATH=$HOME/.npm_global/bin/:$PATH' >> $HOME/.bash_mine
-    echo 'export no_proxy=localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24' >> $HOME/.bash_mine
-    echo 'export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24' >> $HOME/.bash_mine
+    echo 'export no_proxy=localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24,192.168.49.0/24' >> $HOME/.bash_mine
+    echo 'export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24,192.168.49.0/24' >> $HOME/.bash_mine
     source $HOME/.bashrc
 fi
 
