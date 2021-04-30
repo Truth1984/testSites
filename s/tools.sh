@@ -1,7 +1,7 @@
 #!/bin/bash
 # bash <(curl -s https://truth1984.github.io/testSites/s/tools.sh)
 
-common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server iptables"
+common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server iptables udisks2"
 
 if [ -x "$(command -v apt)" ]; then
     sudo apt-get install software-properties-common
