@@ -1,5 +1,7 @@
 #!/bin/bash
 # bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
+# lite : ignore docker and docker-compose
+
 if ! [ -x "$(command -v sudo)" ]; then
     if [ -x "$(command -v apt)" ]; then 
         apt-get update -y
@@ -127,7 +129,7 @@ if ! [ -x "$(command -v n)" ]; then
     mkdir -p $HOME/.application/tmp
     cd $HOME/.application/tmp
     npm i n
-    sudo $HOME/.application/tmp/node_modules/n/bin/n latest
+    sudo $HOME/.application/tmp/node_modules/n/bin/n stable
     PATH="$PATH"   
     cd $HOME && sudo rm -rf $HOME/.application/tmp   
     
@@ -145,7 +147,9 @@ fi;
 if ! [ -x "$(command -v python3)" ] || ! [ -f $HOME/.config/pip/pip.conf ] ; then
     ist python3-pip 
     sudo -H pip3 install --upgrade pip
+    python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
     sudo python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+    sudo -u root ln -s /usr/local/bin/pip3 /bin/pip3
 fi;
 
 if ! [ $LANG = en_US.UTF-8 ]; then
@@ -173,6 +177,11 @@ fi;
 if ! [ -d /snap ]; then
     sudo ln -s /var/lib/snapd/snap /snap
 fi;
+
+if [ $# -gt 0 ] && [ $1 = "lite" ]; then
+    echo "lite install complete"
+    exit 0
+fi
 
 if ! [ -x "$(command -v docker)" ]; then 
     echo docker

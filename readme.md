@@ -27,3 +27,9 @@ choco install -y git wget
 ```bash
 bash <(curl -s https://truth1984.github.io/testSites/s/info.sh)
 ```
+
+### lite
+
+ignore docker install
+
+`if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl) lite; elif [ -x "$(command -v wget)" ]; then wget -O - $preurl | bash; fi;`
