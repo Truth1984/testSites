@@ -32,4 +32,6 @@ bash <(curl -s https://truth1984.github.io/testSites/s/info.sh)
 
 ignore docker install
 
-`if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl) lite; elif [ -x "$(command -v wget)" ]; then wget -O - $preurl | bash; fi;`
+```bash
+if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl) lite; elif [ -x "$(command -v wget)" ]; then wget -O - $preurl | bash -s lite; fi;
+```
