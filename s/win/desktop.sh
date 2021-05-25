@@ -39,9 +39,9 @@ if ! [ -x "$(command -v yarn)" ]; then
     source $HOME/.bashrc
 fi;
 
-if ! [ -d "$HOME/Documents/ucmd" ]; then 
-    git clone https://github.com/Truth1984/ucmd.git $HOME/Documents/ucmd
-    cd $HOME/Documents/ucmd
+if ! [ -d "$HOME/Documents/ucmd2" ]; then 
+    git clone https://github.com/Truth1984/ucmd2.git $HOME/Documents/ucmd2
+    cd $HOME/Documents/ucmd2
     # yarn global add $PWD
     npm i -g .
 fi;
