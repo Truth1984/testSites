@@ -25,8 +25,8 @@ if ! [ -d "$HOME/Documents/ucmd2" ]; then
         u link docker-compose
     fi;
     
-    u quick pip3 "sudo python3 -m pip install ... -i https://mirrors.aliyun.com/pypi/simple/"
-    u quick noip6 "sudo sysctl -p"
+    u quick pip3 -c "sudo python3 -m pip install ... -i https://mirrors.aliyun.com/pypi/simple/"
+    u quick noip6 -c "sudo sysctl -p"
 fi
 
 if [ -x "$(command -v ansible)" ]; then

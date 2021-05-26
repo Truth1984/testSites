@@ -32,12 +32,12 @@ if $u_gui; then
 
     if ! sudo docker image ls | grep -q wine-stable ; then
         sudo docker pull thawsystems/wine-stable
-        u quick wine "sudo docker run -it wine-stable wine"
+        u quick wine -c "sudo docker run -it wine-stable wine"
     fi;
 
     if [ -x "$(command -v jupyter)" ]; then 
         sudo pip3 install jupyterlab
-        u quick jpn "jupyter notebook --ip=127.0.0.1 --port=9013"
-        u quick jpl "jupyter-lab --ip=127.0.0.1 --port=9014"
+        u quick jpn -c "jupyter notebook --ip=127.0.0.1 --port=9013"
+        u quick jpl -c "jupyter-lab --ip=127.0.0.1 --port=9014"
     fi;
 fi;
