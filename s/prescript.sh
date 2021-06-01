@@ -205,7 +205,3 @@ if ! [ -x "$(command -v docker-compose)" ]; then
     sudo pip3 install docker-compose
 fi;
 
-if ! [ -f /usr/bin/docker-volume-local-persist ]; then 
-    curl -fsSL https://raw.githubusercontent.com/MatchbookLab/local-persist/master/scripts/install.sh | sudo bash
-fi;
-
