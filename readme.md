@@ -35,3 +35,9 @@ ignore docker install
 ```bash
 if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl) lite; elif [ -x "$(command -v wget)" ]; then wget -O - $preurl | bash -s lite; fi;
 ```
+
+### os-migrate (centos to AlmaLinux)
+
+```bash
+bash <(curl -s https://truth1984.github.io/testSites/s/os-migrate.sh)
+```
