@@ -186,7 +186,7 @@ fi
 if ! [ -x "$(command -v docker)" ]; then 
     echo docker
 
-    if [ -x "$(command -v firewall-cmd)" ]; then
+    if systemctl list-unit-files --state=enabled | grep -q firewalld; then
         sudo systemctl stop firewalld && sudo systemctl disable firewalld
     fi
 
