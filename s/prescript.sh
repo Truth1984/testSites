@@ -187,11 +187,7 @@ if ! [ -x "$(command -v docker)" ]; then
     echo docker
 
     if [ -x "$(command -v firewall-cmd)" ]; then
-        sudo firewall-cmd --zone=public --add-masquerade --permanent
-        sudo firewall-cmd --zone=public --add-port=80/tcp
-        sudo firewall-cmd --zone=public --add-port=443/tcp
-        
-        sudo firewall-cmd --reload
+        sudo systemctl stop firewalld && sudo systemctl disable firewalld
     fi
 
     sudo wget -O - https://get.docker.com | bash
