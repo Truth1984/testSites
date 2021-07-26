@@ -145,7 +145,7 @@ if ! [ -x "$(command -v n)" ]; then
     source $HOME/.bashrc
 fi;
 
-if ! [ -x "$(command -v python3)" ] || ! [ -f $HOME/.config/pip/pip.conf ] ; then
+if ! [ -x "$(command -v python3)" ] || ! [ -f $HOME/.config/pip/pip.conf ] || ! [ -x "$(command -v docker-compose)" ] ; then
     ist python3-pip 
     sudo -H pip3 install --upgrade pip
     python3 -m pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple

@@ -3,14 +3,18 @@
 
 common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server iptables udisks2"
 
+source $HOME/.bashrc
+
 if [ -x "$(command -v apt)" ]; then
     sudo apt-get install software-properties-common
-    sudo apt-get install -y $common cron openssh-client silversearcher-ag
+    sudo apt-get install -y $common 
+    sudo apt-get install -y cron openssh-client silversearcher-ag
 fi;
 
 if [ -x "$(command -v yum)" ]; then
     sudo yum install -y epel-release
-    sudo yum install -y $common cronie openssh-clients the_silver_searcher
+    sudo yum install -y $common 
+    sudo yum install -y cronie openssh-clients the_silver_searcher
 fi;
 
 if ! [ -d "$HOME/Documents/ucmd2" ]; then 
