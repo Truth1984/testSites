@@ -36,6 +36,12 @@ ignore docker install
 if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl) lite; elif [ -x "$(command -v wget)" ]; then wget -O - $preurl | bash -s lite; fi;
 ```
 
+### k8s common
+
+```bash
+bash <(curl -s https://truth1984.github.io/testSites/s/k8scommon.sh)
+```
+
 ### os-migrate (centos to AlmaLinux)
 
 ```bash

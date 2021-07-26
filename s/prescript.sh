@@ -192,6 +192,7 @@ if ! [ -x "$(command -v docker)" ]; then
     fi
 
     sudo wget -O - https://get.docker.com | bash
+    sudo usermod -aG docker $(whoami)
 
     sudo systemctl start docker.service
     sudo systemctl enable docker.service
