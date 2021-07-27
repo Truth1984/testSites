@@ -1,3 +1,6 @@
+#!/bin/bash
+# bash <(curl -s https://truth1984.github.io/testSites/s/k8scommon.sh)
+
 if ! [ -x "$(command -v n)" ]; then
     bash <(curl -s https://truth1984.github.io/testSites/s/prescript.sh)
 fi;
@@ -84,7 +87,10 @@ cat > /etc/docker/daemon.json <<EOF
 }
 EOF
 
-service docker restart
+sudo mkdir -p /etc/containerd
+containerd config default | sudo tee /etc/containerd/config.toml
+sudo systemctl restart containerd
 
-echo 'check version info and run "u k8s -c" afterwards'
-
+sudo systemctl restart docker 
+sudo systemctl stop firewalld
+sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X
