@@ -130,7 +130,7 @@ if ! [ -x "$(command -v n)" ]; then
     mkdir -p $HOME/.application/tmp
     cd $HOME/.application/tmp
     npm i n
-    sudo $HOME/.application/tmp/node_modules/n/bin/n stable
+    sudo $HOME/.application/tmp/node_modules/n/bin/n latest
     PATH="$PATH"   
     cd $HOME && sudo rm -rf $HOME/.application/tmp   
     
