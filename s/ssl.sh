@@ -19,7 +19,7 @@ if [ -x "$(command -v apt)" ]; then
     fi;
 else
     if ! [ -x  "$(command -v certbot)" ] || ! [ -x  "$(command -v nginx)" ] ; then
-        sudo yum install certbot nginx
+        sudo yum install certbot nginx python3-certbot-nginx -y
         u service -e=nginx
     fi;
 fi;
