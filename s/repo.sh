@@ -1,6 +1,8 @@
 #!/bin/bash
 # bash <(curl -s https://truth1984.github.io/testSites/s/repo.sh)
 
+# change repo for debian based os
+
 if grep -q "ID=ubuntu" /etc/os-release ; then 
     codename=$(env -i bash -c '. /etc/os-release; echo $VERSION_CODENAME')
     sudo printf "
