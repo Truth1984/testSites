@@ -35,10 +35,10 @@ if ! [ -x "$(command -v curl)" ]; then
     ist curl
 fi;
 
-if [ -d /etc/apt ] && ! grep -q tsinghua /etc/apt/sources.list ; then 
-    bash <(curl -s https://truth1984.github.io/testSites/s/repo.sh)
-    sudo apt-get update
-fi;
+# if [ -d /etc/apt ] && ! grep -q tsinghua /etc/apt/sources.list ; then 
+#     bash <(curl -s https://truth1984.github.io/testSites/s/repo.sh)
+#     sudo apt-get update
+# fi;
 
 if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
     sudo sh -c "printf 'nameserver\t8.8.8.8\n' >> /etc/resolv.conf" 
