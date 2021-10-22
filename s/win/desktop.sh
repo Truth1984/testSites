@@ -43,6 +43,7 @@ if ! [ -d "$HOME/Documents/ucmd2" ]; then
     git clone https://github.com/Truth1984/ucmd2.git $HOME/Documents/ucmd2
     cd $HOME/Documents/ucmd2
     # yarn global add $PWD
+    npm i
     npm i -g .
 fi;
 
