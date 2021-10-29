@@ -18,5 +18,9 @@ wsl --install -d Ubuntu
 # dism.exe /online /enable-feature /featurename:SMB1Protocol /all /norestart
 
 # restart
-
+# change ubuntu file permission
+# 1. `bash`
+# printf '[automount]\nenabled  = true\nroot     = /mnt/\noptions  = "metadata,umask=22,fmask=11"' > /etc/wsl.conf
+# 2. `cmd`
+# wsl --shutdown
 
