@@ -27,6 +27,9 @@ wsl --install -d Ubuntu
 # cd ubuntu-wsl2-systemd-script/
 # bash ubuntu-wsl2-systemd-script.sh
 
+# init dbus ver.2 by using genie
+# https://gist.github.com/djfdyuruiry/6720faa3f9fc59bfdf6284ee1f41f950
+
 # 2. `cmd`
 # wsl --shutdown
 
