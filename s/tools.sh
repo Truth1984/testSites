@@ -17,6 +17,14 @@ if [ -x "$(command -v yum)" ]; then
     sudo yum install -y cronie openssh-clients the_silver_searcher
 fi;
 
+if [ -x "$(command -v brew)" ]; then
+    if [ ! -d /usr/local/sbin ]; then 
+        sudo mkdir /usr/local/sbin && sudo chmod 777 /usr/local/sbin
+        echo 'export PATH=/usr/local/sbin:$PATH' >> $HOME/.bashrc
+    fi;
+    brew install git wget nethogs the_silver_searcher
+fi;
+
 if ! [ -d "$HOME/Documents/ucmd2" ]; then 
     git clone https://github.com/Truth1984/ucmd2.git $HOME/Documents/ucmd2
     cd $HOME/Documents/ucmd2
