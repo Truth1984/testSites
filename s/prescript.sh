@@ -50,9 +50,9 @@ if ! cat /etc/hosts | grep -q github ; then
     sudo sh -c "printf '140.82.114.4\tgithub.com\n' >> /etc/hosts"
 fi;
 
-if ! cat /etc/sysctl.conf | grep -q vm.max_map_count ; then
-    sudo sh -c "echo 'vm.max_map_count=262144' >> /etc/sysctl.conf"
-fi;
+# if ! cat /etc/sysctl.conf | grep -q vm.max_map_count ; then
+#     sudo sh -c "echo 'vm.max_map_count=262144' >> /etc/sysctl.conf"
+# fi;
 
 if ! [ -d "$HOME/Documents" ]; then
     mkdir $HOME/Documents
@@ -102,13 +102,13 @@ if ! [ -x "$(command -v git)" ]; then
     git config --global alias.adog "log --all --decorate --oneline --graph"
 fi;
 
-if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
-    sudo sh -c 'echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf'
-    sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6=1" >> /etc/sysctl.conf'
-    sudo sh -c 'echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf'
-    sudo sh -c "echo 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf"
-    sudo sysctl -p
-fi;
+# if ! cat /etc/sysctl.conf | grep -q disable_ipv6; then
+#     sudo sh -c 'echo "net.ipv6.conf.all.disable_ipv6=1" >> /etc/sysctl.conf'
+#     sudo sh -c 'echo "net.ipv6.conf.default.disable_ipv6=1" >> /etc/sysctl.conf'
+#     sudo sh -c 'echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf'
+#     sudo sh -c "echo 'fs.inotify.max_user_watches=524288' >> /etc/sysctl.conf"
+#     sudo sysctl -p
+# fi;
 
 if ! [ -x "$(command -v n)" ]; then
     if [ -x "$(command -v apt)" ]; then
@@ -135,12 +135,9 @@ if ! [ -x "$(command -v n)" ]; then
     cd $HOME && sudo rm -rf $HOME/.application/tmp
     
     source $HOME/.bashrc
-    npm i -g yarn n
+    npm i -g n
     source $HOME/.bashrc
-    $HOME/.npm_global/bin/yarn config set registry https://registry.npm.taobao.org -g
-    $HOME/.npm_global/bin/yarn config set prefix $HOME/.npm_global
-    $HOME/.npm_global/bin/yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
-    
+      
     npm i -g nodemon trash-cli awadau
     source $HOME/.bashrc
 fi;
@@ -191,8 +188,14 @@ if ! [ -x "$(command -v docker)" ]; then
         sudo systemctl stop firewalld && sudo systemctl disable firewalld
     fi
     
-    sudo wget -O - https://get.docker.com | bash
-    sudo usermod -aG docker $(whoami)
+    if [ -x "$(command -v yum)" ]; then 
+        sudo yum install -y yum-utils
+        sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+        ist docker-ce docker-ce-cli containerd.io
+    else 
+        sudo wget -O - https://get.docker.com | bash
+        sudo usermod -aG docker $(whoami)
+    fi;
     
     sudo systemctl start docker.service
     sudo systemctl enable docker.service
