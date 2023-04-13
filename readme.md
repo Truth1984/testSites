@@ -5,13 +5,13 @@ https://truth1984.github.io/testSites/
 full:
 
 ```bash
-preurl="https://truth1984.github.io/testSites/ss/setup.sh" if [ -x "$(command -v curl)" ]; then full=1 bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then full=1 bash <(wget -O - $preurl); fi;
+preurl="https://truth1984.github.io/testSites/ss/setup.sh" && if [ -x "$(command -v curl)" ]; then full=1 bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then full=1 bash <(wget -O - $preurl); fi;
 ```
 
 lite:
 
 ```bash
-preurl="https://truth1984.github.io/testSites/ss/setup.sh" if [ -x "$(command -v curl)" ]; then  bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then bash <(wget -O - $preurl); fi;
+preurl="https://truth1984.github.io/testSites/ss/setup.sh" && if [ -x "$(command -v curl)" ]; then  bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then bash <(wget -O - $preurl); fi;
 ```
 
 ### bash

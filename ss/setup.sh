@@ -43,6 +43,18 @@ if ! $(u2 hasCmd chronyd); then
     sudo systemctl enable chronyd.service
 fi;
 
+## + ssh
+
+if ! $(u2 hasCmd ssh); then 
+    if $(u2 osCheck apt); then u2 install openssh-server openssh-client;
+        elif $(u2 osCheck dnf); then u2 install openssh openssh-server;
+        elif $(u2 osCheck yum); then u2 install openssh openssh-server;
+        elif $(u2 osCheck pacman); then u2 install openssh;
+    fi;
+fi;
+
+## full + node docker docker-compose
+
 if $(u2 hasValue $full); then
 
     if ! $(u2 hasCmd node); then 
@@ -67,7 +79,7 @@ if $(u2 hasValue $full); then
 
 fi;
 
-## gui
+## gui + ibus-libpinyin samba FiraCode
 
 if $(u2 hasCmd Xorg || u2 hasValue $XDG_SESSION_TYPE); then
     u install ibus-libpinyin samba
