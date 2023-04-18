@@ -24,7 +24,7 @@ fi;
 
 ## extra dep
 
-u2 install wget curl nano git
+u2 install wget curl nano git trash-cli
 
 if $(u2 hasValue $full); then
     u2 install screen
