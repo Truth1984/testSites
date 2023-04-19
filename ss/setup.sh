@@ -18,17 +18,9 @@ fi;
 
 u2 upgrade
 
-if ! $(u2 hasCmd sudo); then
-    u2 install sudo
-fi;
-
 ## extra dep
 
-u2 install wget curl nano git trash-cli
-
-if $(u2 hasValue $full); then
-    u2 install screen
-fi;
+u2 install wget curl nano git
 
 if $(u2 osCheck yum); then
     u2 install redhat-lsb-core epel-release
@@ -38,11 +30,27 @@ if $(u2 osCheck apt); then
     u2 install software-properties-common
 fi;
 
-if ! $(u2 hasCmd chronyd); then
-    u2 install chrony
-    timedatectl set-timezone Asia/Shanghai
-    sudo chronyd -q
-    sudo systemctl enable chronyd.service
+## not windows
+
+if ! $(u2 osCheck win); then
+    
+    u2 install trash-cli
+
+    if ! $(u2 hasCmd sudo); then
+        u2 install sudo
+    fi;
+
+    if $(u2 hasValue $full); then
+        u2 install screen
+    fi;
+
+    if ! $(u2 hasCmd chronyd); then
+        u2 install chrony
+        timedatectl set-timezone Asia/Shanghai
+        sudo chronyd -q
+        sudo systemctl enable chronyd.service
+    fi;
+    
 fi;
 
 ## + ssh
