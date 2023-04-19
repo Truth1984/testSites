@@ -112,11 +112,6 @@ if ! cat /etc/resolv.conf | grep -q 8.8.8.8 ; then
     sudo sh -c "printf 'nameserver\t8.8.4.4\n' >> /etc/resolv.conf"
 fi;
 
-if ! cat /etc/hosts | grep -q github ; then
-    sudo sh -c "printf '151.101.48.133\traw.githubusercontent.com\n' >> /etc/hosts"
-    sudo sh -c "printf '140.82.114.4\tgithub.com\n' >> /etc/hosts"
-fi;
-
 git config --global alias.adog "log --all --decorate --oneline --graph"
 
 mkdir -p $HOME/Documents
@@ -125,6 +120,10 @@ mkdir -p $HOME/.application/empty
 mkdir -p $HOME/.application/logs
 chmod 400 $HOME/.application/empty
 
-if ! [ $LANG = en_US.UTF-8 ]; then
-    localectl set-locale LANG=en_US.UTF-8
+if ! $(u2 osCheck win); then
+
+    if ! [ $LANG = en_US.UTF-8 ]; then
+        localectl set-locale LANG=en_US.UTF-8
+    fi;
+
 fi;
