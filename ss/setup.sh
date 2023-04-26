@@ -6,7 +6,7 @@
 
 ssurl="https://raw.gitmirror.com/Truth1984/shell-simple/main/util.sh"; if $(command -v curl &> /dev/null); then curl $ssurl -o util.sh; elif $(command -v wget &> /dev/null); then wget -O util.sh $ssurl; fi; chmod 777 util.sh && ./util.sh setup
 
-if [[ -z "$(command -v $1)" ]]; then echo u2 not setup correctly && exit 1; fi;
+if [[ -z "$(command -v u2)" ]]; then echo u2 not setup correctly && exit 1; fi;
 
 if $(u2 osCheck alpine); then
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
