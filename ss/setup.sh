@@ -21,7 +21,7 @@ u2 upgrade
 
 ## extra dep
 
-u2 install wget curl nano git
+u2 install wget curl nano git make
 
 if $(u2 osCheck yum); then
     u2 install redhat-lsb-core epel-release
@@ -69,8 +69,8 @@ fi;
 if $(u2 hasValue $full); then
 
     if ! $(u2 hasCmd node); then 
-        curl -L https://bit.ly/n-install | bash
-        n stable
+        curl -L https://bit.ly/n-install | bash -s -- -y
+        source ~/.bashrc
         mkdir -p $HOME/.npm_global/lib
         npm config set registry "http://registry.npmjs.org/"
         npm config set prefix $HOME/.npm_global
