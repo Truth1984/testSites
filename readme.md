@@ -11,7 +11,7 @@ preurl="https://raw.gitmirror.com/Truth1984/testSites/master/ss/setup.sh" && if 
 lite:
 
 ```bash
-preurl="https://raw.gitmirror.com/Truth1984/testSites/master/ss/setup.sh" && if [ -x "$(command -v curl)" ]; then  bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then bash <(wget -O - $preurl); fi;
+preurl="https://raw.gitmirror.com/Truth1984/testSites/master/ss/setup.sh" && if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then bash <(wget -O - $preurl); fi;
 ```
 
 ### bash
@@ -27,6 +27,10 @@ if [ -x "$(command -v curl)" ]; then bash <(curl -s $toolurl); elif [ -x "$(comm
 ### powershell
 
 prerequisite : .net 4.5 `$psversiontable`
+
+```powershell
+$env:full=1 & Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.gitmirror.com/Truth1984/testSites/master/ss/setup.ps1'))
+```
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))

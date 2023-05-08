@@ -123,7 +123,7 @@ chmod 400 $HOME/.application/empty
 
 if ! $(u2 osCheck win); then
 
-    if ! [ $LANG = en_US.UTF-8 ]; then
+    if ! [[ $LANG = en_US.UTF-8 ]]; then
         localectl set-locale LANG=en_US.UTF-8
     fi;
 
