@@ -21,9 +21,9 @@ ForEach ($AppPackageName in $AppPackageNames) {Write-Host "Removing $AppPackageN
 # install
 # more dep TBD
 
-choco install -y 7zip potplayer GoogleChrome vscode dotnetfx 
+choco install -y 7zip potplayer GoogleChrome vscode dotnetfx sandboxie-plus
 
-if (Test-Path env:full){
+if ($env:full -ne $null) {
     choco install -y f.lux nodejs npm   
 } 
 
