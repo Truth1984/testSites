@@ -1,5 +1,7 @@
 # $env:full=1; Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://raw.gitmirror.com/Truth1984/testSites/master/ss/setup.ps1'))
 
+echo SCRIPT_VERSION=1.0.1
+
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # install git
@@ -21,7 +23,7 @@ ForEach ($AppPackageName in $AppPackageNames) {Write-Host "Removing $AppPackageN
 # install
 # more dep TBD
 
-choco install -y 7zip potplayer GoogleChrome vscode dotnetfx sandboxie-plus
+choco install -y 7zip potplayer GoogleChrome dotnetfx sandboxie-plus vscode
 
 if ($env:full -ne $null) {
     choco install -y f.lux nodejs npm   
