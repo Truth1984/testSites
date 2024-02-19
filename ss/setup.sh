@@ -95,7 +95,7 @@ fi;
 ## gui + ibus-libpinyin samba FiraCode
 
 if $(u2 hasCmd Xorg || u2 hasValue $XDG_SESSION_TYPE); then
-    u install ibus-libpinyin samba
+    u2 install ibus-libpinyin samba
 
     font_path=~/.application/fonts
     if ! $(u2 hasDir $font_path); then
