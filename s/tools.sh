@@ -1,6 +1,8 @@
 #!/bin/bash
 # bash <(curl -s https://truth1984.github.io/testSites/s/tools.sh)
 
+TOOL_VERSION=1.0.1
+
 common="git nano nload e2fsprogs psmisc net-tools nethogs openssh-server iptables udisks2"
 
 source $HOME/.bashrc
@@ -23,23 +25,6 @@ if [ -x "$(command -v brew)" ]; then
         echo 'export PATH=/usr/local/sbin:$PATH' >> $HOME/.bashrc
     fi;
     brew install git wget nethogs the_silver_searcher
-fi;
-
-if ! [ -d "$HOME/Documents/ucmd2" ]; then 
-    git clone https://github.com/Truth1984/ucmd2.git $HOME/Documents/ucmd2
-    cd $HOME/Documents/ucmd2
-    # yarn global add $PWD
-    npm run build
-
-    source $HOME/.bashrc
-    
-    if [ -x "$(command -v docker-compose)" ]; then
-        u link docker-compose
-    fi;
-fi
-
-if [ -x "$(command -v ansible)" ]; then
-    u quick pip3 -a="ansible"
 fi;
 
 if $u_gui && ! npm list -g | grep -q typescript; then 

@@ -3,7 +3,7 @@
 
 source ~/.bash_mine && shopt -s expand_aliases
 
-if $(u2 osCheck alpine); then
+if $(u2 os -c alpine); then
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
     apk update
 fi;
