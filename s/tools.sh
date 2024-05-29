@@ -24,7 +24,7 @@ if [ -x "$(command -v brew)" ]; then
         sudo mkdir /usr/local/sbin && sudo chmod 777 /usr/local/sbin
         echo 'export PATH=/usr/local/sbin:$PATH' >> $HOME/.bashrc
     fi;
-    brew install git wget nethogs the_silver_searcher
+    brew install git wget nethogs the_silver_searcher coreutils
 fi;
 
 if $u_gui && ! npm list -g | grep -q typescript; then 

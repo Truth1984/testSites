@@ -2,6 +2,12 @@ https://truth1984.github.io/testSites/
 
 ### fast
 
+just setup:
+
+```bash
+preurl="https://raw.gitmirror.com/Truth1984/testSites/master/ss/setup2.sh" && if [ -x "$(command -v curl)" ]; then bash <(curl -s $preurl); elif [ -x "$(command -v wget)" ]; then bash <(wget -O - $preurl); fi;
+```
+
 full:
 
 ```bash
